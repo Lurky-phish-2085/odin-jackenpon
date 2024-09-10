@@ -1,7 +1,42 @@
 const choices = ['rock', 'paper', 'scissors'];
 
-let humanScore = 0;
-let computerScore = 0;
+playGame();
+
+function playGame() {
+  const rounds = 5;
+
+  let humanScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i <= rounds; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+  }
+
+  const result = humanScore > computerScore ? 'You WIN' : 'You LOSE';
+  console.log(result);
+
+  function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+      console.log("It's a tie!");
+      return;
+    }
+
+    const playerWon = (humanChoice === 'rock' && computerChoice === 'scissors') || 
+      (humanChoice === 'paper' && computerChoice === 'rock') ||
+      (humanChoice === 'scissors' && computerChoice === 'paper');
+
+    if (!playerWon) {
+      console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+      computerScore++;
+      console.log(`P: ${humanScore} C: ${computerScore}`);
+      return;
+    }
+
+    console.log(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+    humanScore++;
+    console.log(`P: ${humanScore} C: ${computerScore}`);
+  }
+}
 
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
@@ -17,28 +52,6 @@ function getHumanChoice() {
   }
 
   return humanChoice;
-}
-
-function playRound(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice) {
-    console.log("It's a tie!");
-    return;
-  }
-
-  const playerWon = (humanChoice === 'rock' && computerChoice === 'scissors') || 
-    (humanChoice === 'paper' && computerChoice === 'rock') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper');
-
-  if (!playerWon) {
-    console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
-    computerScore++;
-    console.log(`P: ${humanScore} C: ${computerScore}`);
-    return;
-  }
-
-  console.log(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
-  humanScore++;
-  console.log(`P: ${humanScore} C: ${computerScore}`);
 }
 
 function capitalize(word) {
