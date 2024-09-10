@@ -31,10 +31,14 @@ function playRound(humanChoice, computerChoice) {
 
   if (!playerWon) {
     console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+    computerScore++;
+    console.log(`P: ${humanScore} C: ${computerScore}`);
     return;
   }
 
   console.log(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+  humanScore++;
+  console.log(`P: ${humanScore} C: ${computerScore}`);
 }
 
 function capitalize(word) {
