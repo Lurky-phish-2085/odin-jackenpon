@@ -30,11 +30,11 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === 'scissors' && computerChoice === 'paper');
 
   if (!playerWon) {
-    console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+    console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
     return;
   }
 
-  console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
+  console.log(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
 }
 
 function capitalize(word) {
