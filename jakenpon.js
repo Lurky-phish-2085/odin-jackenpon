@@ -36,3 +36,7 @@ function playRound(humanChoice, computerChoice) {
 
   console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
 }
+
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
