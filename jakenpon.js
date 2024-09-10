@@ -13,11 +13,11 @@ function playGame() {
   }
 
   const result = humanScore > computerScore ? 'You WIN' : 'You LOSE';
-  console.log(result);
+  alert(result);
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-      console.log("It's a tie!");
+      alert("It's a tie!");
       return;
     }
 
@@ -26,15 +26,15 @@ function playGame() {
       (humanChoice === 'scissors' && computerChoice === 'paper');
 
     if (!playerWon) {
-      console.log(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+      alert(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
       computerScore++;
-      console.log(`P: ${humanScore} C: ${computerScore}`);
+      alert(`P: ${humanScore} C: ${computerScore}`);
       return;
     }
 
-    console.log(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+    alert(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
     humanScore++;
-    console.log(`P: ${humanScore} C: ${computerScore}`);
+    alert(`P: ${humanScore} C: ${computerScore}`);
   }
 }
 
