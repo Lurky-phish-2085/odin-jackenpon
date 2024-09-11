@@ -14,6 +14,7 @@ function playGame() {
 
   const result = humanScore > computerScore ? 'You WIN' : 'You LOSE';
   alert(result);
+  displayScores();
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -28,13 +29,17 @@ function playGame() {
     if (!playerWon) {
       alert(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
       computerScore++;
-      alert(`P: ${humanScore} C: ${computerScore}`);
+      displayScores();
       return;
     }
 
     alert(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
     humanScore++;
-    alert(`P: ${humanScore} C: ${computerScore}`);
+    displayScores();
+  }
+
+  function displayScores() {
+    alert(`SCORES\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
   }
 }
 
