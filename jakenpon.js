@@ -12,8 +12,8 @@ function playGame() {
     playRound(getHumanChoice(), getComputerChoice());
   });
 
-  alert(getResult());
-  displayScores();
+  displayResults();
+  displayScores('FINAL RESULTS: ');
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -37,8 +37,8 @@ function playGame() {
     displayScores();
   }
 
-  function displayScores() {
-    alert(`SCORES\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+  function displayScores(header = 'SCORES') {
+    alert(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
   }
 
   function getResult() {
@@ -48,6 +48,10 @@ function playGame() {
 
 
     return humanScore > computerScore ? 'You WIN' : 'You LOSE';
+  }
+
+  function displayResults() {
+    alert(getResult());
   }
 }
 
