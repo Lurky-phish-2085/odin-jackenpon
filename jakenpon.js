@@ -12,8 +12,7 @@ function playGame() {
     playRound(getHumanChoice(), getComputerChoice());
   });
 
-  const result = humanScore > computerScore ? 'You WIN' : 'You LOSE';
-  alert(result);
+  alert(getResult());
   displayScores();
 
   function playRound(humanChoice, computerChoice) {
@@ -40,6 +39,15 @@ function playGame() {
 
   function displayScores() {
     alert(`SCORES\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+  }
+
+  function getResult() {
+    if (humanScore === computerScore) {
+      return "It's a TIE!";
+    }
+
+
+    return humanScore > computerScore ? 'You WIN' : 'You LOSE';
   }
 }
 
