@@ -8,9 +8,9 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  for (let i = 0; i <= rounds; i++) {
+  repeat(rounds, () => {
     playRound(getHumanChoice(), getComputerChoice());
-  }
+  });
 
   const result = humanScore > computerScore ? 'You WIN' : 'You LOSE';
   alert(result);
@@ -61,4 +61,10 @@ function getHumanChoice() {
 
 function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function repeat(times, callback) {
+  for (let i = 0; i <= Number(times); i++) {
+    callback();
+  }
 }
