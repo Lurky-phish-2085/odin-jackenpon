@@ -76,7 +76,7 @@ function capitalize(word) {
 }
 
 function repeat(times, callback) {
-  for (let i = 0; i <= Number(times); i++) {
-    callback();
+  for (let index = 0; index <= Number(times); i++) {
+    callback(index);
   }
 }
