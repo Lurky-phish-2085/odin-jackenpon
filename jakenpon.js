@@ -4,6 +4,8 @@ const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
 
+const results = document.querySelector("#results");
+
 rockBtn.addEventListener('click', () => {
   playRound("rock", getComputerChoice());
 });
@@ -18,7 +20,7 @@ scissorsBtn.addEventListener('click', () => {
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    alert("It's a tie!");
+    updateResults("It's a tie!")
     return;
   }
 
@@ -27,19 +29,19 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === 'scissors' && computerChoice === 'paper');
 
   if (!playerWon) {
-    alert(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+    updateResults(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
     computerScore++;
     displayScores();
     return;
   }
 
-  alert(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+  updateResults(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
   humanScore++;
   displayScores();
 }
 
 function displayScores(header = 'SCORES') {
-  alert(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+  updateResults(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
 }
 
 function getResult() {
@@ -69,6 +71,10 @@ function getHumanChoice() {
   }
 
   return humanChoice;
+}
+
+function updateResults(result) {
+  results.innerHTML += `<p>${result}</p>`;
 }
 
 function capitalize(word) {
