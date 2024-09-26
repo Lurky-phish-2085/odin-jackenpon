@@ -25,6 +25,12 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
+  if (round === 6) {
+    resetGame();
+
+    return;
+  }
+
   if (humanChoice === computerChoice) {
     updateResults("It's a tie!")
     round++;
@@ -97,6 +103,15 @@ function updateResults(result) {
 
 function updateGameStats(r = round) {
   gameStatsDisplay.innerHTML = `<p>ROUND: ${r}&emsp;SCORE: ${humanScore}&emsp;CPU: ${computerScore}</p>`;
+}
+
+function resetGame() {
+  finalResultDisplay.innerHTML = "";
+  round = 1;
+  humanScore = 0;
+  computerScore = 0;
+  resultsDisplay.innerHTML = "";
+  updateGameStats();
 }
 
 function capitalize(word) {
