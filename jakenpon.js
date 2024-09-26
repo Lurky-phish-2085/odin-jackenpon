@@ -1,5 +1,21 @@
 const choices = ['rock', 'paper', 'scissors'];
 
+const rockBtn = document.querySelector("#rock-btn");
+const paperBtn = document.querySelector("#paper-btn");
+const scissorsBtn = document.querySelector("#scissors-btn");
+
+rockBtn.addEventListener('click', () => {
+  playRound("rock", getComputerChoice());
+});
+
+paperBtn.addEventListener('click', () => {
+  playRound("paper", getComputerChoice());
+});
+
+scissorsBtn.addEventListener('click', () => {
+  playRound("scissors", getComputerChoice());
+});
+
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     alert("It's a tie!");
