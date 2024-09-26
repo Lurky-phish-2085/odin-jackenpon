@@ -27,8 +27,10 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     updateResults("It's a tie!")
-    updateGameStats();
     round++;
+    updateGameStats(round);
+    announceFinalResult();
+
     return;
   }
 
@@ -37,18 +39,20 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === 'scissors' && computerChoice === 'paper');
 
   if (!playerWon) {
-    updateResults(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
     computerScore++;
-    updateGameStats();
+    updateResults(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
     round++;
+    updateGameStats(round);
+    announceFinalResult();
 
     return;
   }
 
-  updateResults(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
   humanScore++;
-  updateGameStats();
+  updateResults(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
   round++;
+  updateGameStats(round);
+  announceFinalResult();
 }
 
 function getResult() {
@@ -58,10 +62,6 @@ function getResult() {
 
 
   return humanScore > computerScore ? 'You WIN' : 'You LOSE';
-}
-
-function displayResults() {
-  alert(getResult());
 }
 
 function getComputerChoice() {
@@ -80,6 +80,14 @@ function getHumanChoice() {
   return humanChoice;
 }
 
+function announceFinalResult() {
+  if (round === 6) {
+    finalResultDisplay.innerHTML = `<p>${getResult()}</p>`;
+    updateResults(result);
+    updateGameStats(5);
+  }
+}
+
 function updateResults(result) {
   const resultMessage = document.createElement("p");
   resultMessage.textContent = `${round}: ${result}`;
@@ -87,8 +95,8 @@ function updateResults(result) {
   resultsDisplay.insertBefore(resultMessage, resultsDisplay.firstElementChild);
 }
 
-function updateGameStats() {
-  gameStatsDisplay.innerHTML = `<p>ROUND: ${round}&emsp;SCORE: ${humanScore}&emsp;CPU: ${computerScore}</p>`;
+function updateGameStats(r = round) {
+  gameStatsDisplay.innerHTML = `<p>ROUND: ${r}&emsp;SCORE: ${humanScore}&emsp;CPU: ${computerScore}</p>`;
 }
 
 function capitalize(word) {
