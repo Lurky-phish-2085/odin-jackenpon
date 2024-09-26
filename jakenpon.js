@@ -4,8 +4,6 @@ const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
 
-const resultsDisplay = document.querySelector("#results");
-
 rockBtn.addEventListener('click', () => {
   playRound("rock", getComputerChoice());
 });
@@ -18,13 +16,17 @@ scissorsBtn.addEventListener('click', () => {
   playRound("scissors", getComputerChoice());
 });
 
-let round = 0;
+const resultsDisplay = document.querySelector("#results");
+const gameStatsDisplay = document.querySelector("#stats");
+
+let round = 1;
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  round++;
-
   if (humanChoice === computerChoice) {
     updateResults("It's a tie!")
+    round++;
     return;
   }
 
@@ -35,17 +37,16 @@ function playRound(humanChoice, computerChoice) {
   if (!playerWon) {
     updateResults(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
     computerScore++;
-    displayScores();
+    updateGameStats();
+    round++;
+
     return;
   }
 
   updateResults(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
   humanScore++;
-  displayScores();
-}
-
-function displayScores(header = 'SCORES') {
-  updateResults(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+  updateGameStats();
+  round++;
 }
 
 function getResult() {
@@ -82,6 +83,10 @@ function updateResults(result) {
   resultMessage.textContent = `${round}: ${result}`;
 
   resultsDisplay.insertBefore(resultMessage, resultsDisplay.firstElementChild);
+}
+
+function updateGameStats() {
+  gameStatsDisplay.innerHTML = `<p>ROUND: ${round}&emsp;SCORE: ${humanScore}&emsp;CPU: ${computerScore}</p>`;
 }
 
 function capitalize(word) {
