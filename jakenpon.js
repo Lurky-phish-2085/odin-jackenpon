@@ -18,6 +18,7 @@ scissorsBtn.addEventListener('click', () => {
 
 const resultsDisplay = document.querySelector("#results");
 const gameStatsDisplay = document.querySelector("#stats");
+const finalResultDisplay = document.querySelector("#final-result");
 
 let round = 1;
 let humanScore = 0;
@@ -26,6 +27,7 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     updateResults("It's a tie!")
+    updateGameStats();
     round++;
     return;
   }
