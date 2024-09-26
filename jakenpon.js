@@ -1,58 +1,42 @@
 const choices = ['rock', 'paper', 'scissors'];
 
-playGame();
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    alert("It's a tie!");
+    return;
+  }
 
-function playGame() {
-  const rounds = 5;
+  const playerWon = (humanChoice === 'rock' && computerChoice === 'scissors') || 
+    (humanChoice === 'paper' && computerChoice === 'rock') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper');
 
-  let humanScore = 0;
-  let computerScore = 0;
-
-  repeat(rounds, () => {
-    playRound(getHumanChoice(), getComputerChoice());
-  });
-
-  displayResults();
-  displayScores('FINAL RESULTS: ');
-
-  function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-      alert("It's a tie!");
-      return;
-    }
-
-    const playerWon = (humanChoice === 'rock' && computerChoice === 'scissors') || 
-      (humanChoice === 'paper' && computerChoice === 'rock') ||
-      (humanChoice === 'scissors' && computerChoice === 'paper');
-
-    if (!playerWon) {
-      alert(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
-      computerScore++;
-      displayScores();
-      return;
-    }
-
-    alert(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
-    humanScore++;
+  if (!playerWon) {
+    alert(`You Lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+    computerScore++;
     displayScores();
+    return;
   }
 
-  function displayScores(header = 'SCORES') {
-    alert(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+  alert(`You Win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+  humanScore++;
+  displayScores();
+}
+
+function displayScores(header = 'SCORES') {
+  alert(`${header}\n\nPLAYER: ${humanScore}\nCPU: ${computerScore}`);
+}
+
+function getResult() {
+  if (humanScore === computerScore) {
+    return "It's a TIE!";
   }
 
-  function getResult() {
-    if (humanScore === computerScore) {
-      return "It's a TIE!";
-    }
 
+  return humanScore > computerScore ? 'You WIN' : 'You LOSE';
+}
 
-    return humanScore > computerScore ? 'You WIN' : 'You LOSE';
-  }
-
-  function displayResults() {
-    alert(getResult());
-  }
+function displayResults() {
+  alert(getResult());
 }
 
 function getComputerChoice() {
