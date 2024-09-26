@@ -4,7 +4,7 @@ const rockBtn = document.querySelector("#rock-btn");
 const paperBtn = document.querySelector("#paper-btn");
 const scissorsBtn = document.querySelector("#scissors-btn");
 
-const results = document.querySelector("#results");
+const resultsDisplay = document.querySelector("#results");
 
 rockBtn.addEventListener('click', () => {
   playRound("rock", getComputerChoice());
@@ -18,7 +18,11 @@ scissorsBtn.addEventListener('click', () => {
   playRound("scissors", getComputerChoice());
 });
 
+let round = 0;
+
 function playRound(humanChoice, computerChoice) {
+  round++;
+
   if (humanChoice === computerChoice) {
     updateResults("It's a tie!")
     return;
@@ -74,7 +78,10 @@ function getHumanChoice() {
 }
 
 function updateResults(result) {
-  results.innerHTML += `<p>${result}</p>`;
+  const resultMessage = document.createElement("p");
+  resultMessage.textContent = `${round}: ${result}`;
+
+  resultsDisplay.insertBefore(resultMessage, resultsDisplay.firstElementChild);
 }
 
 function capitalize(word) {
